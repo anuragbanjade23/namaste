@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced QR Code Generator and Reader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <header>
+                <h1>Advanced QR Code Generator and Reader</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#generator">Generate QR Code</a></li>
+                        <li><a href="#scanner">Scan QR Code</a></li>
+                        <li><a href="#history">History</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><button id="dark-mode-toggle">Dark Mode</button></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <!-- Instructions Section -->
+            <section id="instructions" class="card">
+                <h2>Instructions</h2>
+                <p>Use the sections below to generate QR codes, scan QR codes from images or webcam, and view the history of generated QR codes. Enjoy a modern and interactive experience with customization options.</p>
+            </section>
+
+            <!-- QR Code Generator Section -->
+            <section id="generator" class="card" aria-labelledby="generator-heading">
+                <h2 id="generator-heading">Generate QR Code</h2>
+                <div class="tooltip" aria-live="polite">
+                    <input type="text" id="qr-text" placeholder="Enter text for QR code" aria-label="Text for QR Code">
+                    <span class="tooltiptext">Enter the text you want to encode into a QR code.</span>
+                </div>
+                <div>
+                    <label for="qr-size">Size:</label>
+                    <input type="range" id="qr-size" min="100" max="500" value="256" aria-label="QR Code Size">
+                </div>
+                <div>
+                    <label for="qr-color">Color:</label>
+                    <input type="color" id="qr-color" value="#000000" aria-label="QR Code Color">
+                </div>
+                <button id="generate-btn">Generate QR Code</button>
+                <div id="qr-code-output" class="qr-code-output" aria-live="polite"></div>
+            </section>
+
+            <!-- QR Code Scanner Section -->
+            <section id="scanner" class="card" aria-labelledby="scanner-heading">
+                <h2 id="scanner-heading">Scan QR Code</h2>
+                <div class="tooltip" aria-live="polite">
+                    <p>Choose a method to scan QR codes:</p>
+                    <button id="scan-file-btn">Scan from File</button>
+                    <button id="scan-webcam-btn">Scan with Webcam</button>
+                </div>
+                <div id="file-scanner" class="file-scanner">
+                    <input type="file" id="qr-file" accept="image/*" aria-label="Upload QR code image">
+                </div>
+                <div id="webcam-scanner" class="webcam-scanner">
+                    <video id="webcam" autoplay></video>
+                    <canvas id="webcam-canvas" style="display: none;"></canvas>
+                </div>
+                <div id="scan-result" class="scan-result" aria-live="polite"></div>
+                <div id="loading" class="loading" aria-live="polite">Processing...</div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history" class="card">
+                <h2>QR Code History</h2>
+                <ul id="history-list"></ul>
+            </section>
+            
+            <!-- About Section -->
+            <section id="about" class="card">
+                <h2>About This Tool</h2>
+                <p>This advanced tool allows you to generate and scan QR codes with extensive customization options, including real-time webcam scanning and a history log. Enjoy a responsive and interactive experience.</p>
+            </section>
+
+            <!-- Modal for Detailed Results -->
+            <div id="result-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()" aria-label="Close modal">&times;</span>
+                    <h2 id="modal-title">QR Code Result</h2>
+                    <p id="modal-text"></p>
+                </div>
+            </div>
+
+            <!-- Toast Notifications -->
+            <div id="toast" class="toast" aria-live="polite"></div>
+
+            <!-- Footer -->
+            <footer>
+                <p>&copy; 2024 QR Code Generator and Reader. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://unpkg.com/qrcode.min.js"></script>
+    <script src="https://unpkg.com/jsqr/dist/jsqr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
